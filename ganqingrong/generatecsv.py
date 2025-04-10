@@ -310,96 +310,68 @@ for row in port_data:
     phone = goalid_to_phone[goalid]
     phone_to_portfolios.setdefault(phone, []).append(portfolioid)
 
-# ----------------------------
-# 14. TRANSACTION – 3NF
-# 200 transactions: 120 monthly top-ups for 10 random investors + 80 random transactions.
-# ----------------------------
+import random
+from datetime import datetime, timedelta
+
+# --------------------------------------
+# CONFIG
+# --------------------------------------
 trans_header = ["transactionid", "transactionamount", "transactiondate", "portfolioid", "assetid"]
 trans_data = []
 
-dca_investors = random.sample(investor_phones, 10)
-def first_of_month_2024(m):
-    hour = random.randint(0, 23)
-    minute = random.randint(0, 59)
-    return datetime(2024, m, 1, hour, minute, 0)
+market_tids = [f"t{str(i).zfill(3)}" for i in range(1, 301)]
+rebalancing_tids = [f"t{str(i).zfill(3)}" for i in range(301, 601)]
+withdrawal_tids = [f"t{str(i).zfill(3)}" for i in range(601, 901)]
 
-tid_counter = 1
-for phone in dca_investors:
-    portfolios = phone_to_portfolios.get(phone, [])
-    if portfolios:
-        portfolioid = random.choice(portfolios)
-        for month in range(1, 13):
-            t_id = f"t{str(tid_counter).zfill(3)}"
-            tid_counter += 1
-            dt_obj = first_of_month_2024(month)
-            transactiondate = dt_obj.strftime("%Y-%m-%d %H:%M:%S")
-            transactionamount = random.randint(500, 3000)
-            assetid = random.choice(asset_ids)
-            trans_data.append([t_id, str(transactionamount), transactiondate, portfolioid, assetid])
+# --------------------------------------
+# GENERATE TRANSACTION DATA (900 total)
+# --------------------------------------
+all_tids = market_tids + rebalancing_tids + withdrawal_tids
+base_dt = datetime(2024, 1, 1)
 
-all_portfolio_ids = [row[0] for row in port_data]
-base_dt3 = datetime(2024, 1, 1, 0, 0, 0)
-for _ in range(80):
-    t_id = f"t{str(tid_counter).zfill(3)}"
-    tid_counter += 1
+for t_id in all_tids:
     transactionamount = random.randint(500, 10000)
-    rand_day = base_dt3 + timedelta(days=random.randint(0, 365))
-    transactiondate = rand_day.strftime("%Y-%m-%d %H:%M:%S")
-    portfolioid = random.choice(all_portfolio_ids)
+    rand_dt = base_dt + timedelta(days=random.randint(0, 364), hours=random.randint(0, 23), minutes=random.randint(0, 59))
+    transactiondate = rand_dt.strftime("%Y-%m-%d %H:%M:%S")
+    portfolioid = random.choice([row[0] for row in port_data])
     assetid = random.choice(asset_ids)
     trans_data.append([t_id, str(transactionamount), transactiondate, portfolioid, assetid])
 
+# Write TRANSACTION table
 write_csv("transaction.csv", trans_header, trans_data)
 
-# ----------------------------
-# Build helper dictionary for fee calculations using portfolio data.
-# Map transaction id -> portfolioid from transaction and
-# invested_dict: portfolioid -> investedvalue (from portfolio table)
-# ----------------------------
+# Helper maps for later use
 trans_dict = {row[0]: row[3] for row in trans_data}
 invested_dict = {row[0]: float(row[2]) for row in port_data}
 
-# ----------------------------
-# 15. MARKETTRANSACTION – 3NF (subclass of Transaction)
-# ----------------------------
+# --------------------------------------
+# MARKETTRANSACTION: t001 – t300
+# --------------------------------------
 mt_header = ["transactionid", "companyid"]
 mt_data = []
-all_tids = [f"t{str(i).zfill(3)}" for i in range(121, 201)]
-sample_mt = random.sample(all_tids, 30)
-for t_id in sample_mt:
+for t_id in market_tids:
     companyid = f"brk{str(random.randint(1, 15)).zfill(3)}"
     mt_data.append([t_id, companyid])
 write_csv("markettransaction.csv", mt_header, mt_data)
 
-# ----------------------------
-# 16. REBALANCINGTRANSACTION – 3NF (subclass of Transaction)
-# For each rebalancing transaction, there is a fee that is 0.20% of the portfolio’s invested value.
-# ----------------------------
+# --------------------------------------
+# REBALANCINGTRANSACTION: t301 – t600
+# --------------------------------------
 rt_header = ["transactionid", "fee"]
 rt_data = []
-remaining_tids = list(set(all_tids) - set(sample_mt))
-sample_rt = random.sample(remaining_tids, 30)
-for t_id in sample_rt:
-    portfolioid = trans_dict.get(t_id, None)
-    if portfolioid and portfolioid in invested_dict:
-        fee = round(invested_dict[portfolioid] * 0.002, 2)
-    else:
-        fee = 0
+for t_id in rebalancing_tids:
+    portfolioid = trans_dict.get(t_id)
+    fee = round(invested_dict.get(portfolioid, 0) * 0.002, 2)
     rt_data.append([t_id, str(fee)])
 write_csv("rebalancingtransaction.csv", rt_header, rt_data)
 
-# ----------------------------
-# 17. WITHDRAWALORTOPUPTRANSACTION – 3NF (subclass of Transaction)
-# ----------------------------
+# --------------------------------------
+# WITHDRAWALORTOPUPTRANSACTION: t601 – t900
+# --------------------------------------
 wot_header = ["transactionid", "type"]
 wot_data = []
-for i in range(1, 121):
-    t_id = f"t{str(i).zfill(3)}"
-    wot_data.append([t_id, "topup"])
-possible_wot = [f"t{str(i).zfill(3)}" for i in range(121, 151)]
-sample_wot = random.sample(possible_wot, 30)
-for t_id in sample_wot:
-    ttype = random.choice(["withdrawal", "topup"])
+for t_id in withdrawal_tids:
+    ttype = random.choice(["topup", "withdrawal"])
     wot_data.append([t_id, ttype])
 write_csv("withdrawalortopuptransaction.csv", wot_header, wot_data)
 
