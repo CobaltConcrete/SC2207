@@ -62,7 +62,7 @@ for i in range(1, 51):
     last = random.choice(last_names)
     name = f"{first} {last}"
     # Birth years between 1960 and 2005
-    year = random.randint(1960, 2005)
+    year = random.randint(1974, 2006)
     month = random.randint(1, 12)
     day = random.randint(1, 28)
     dob = f"{year}-{month:02d}-{day:02d}"

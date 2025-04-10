@@ -1,13 +1,9 @@
 question1,question2,question3,question4,question5,risktolerance
-b,e,e,c,d,aggressive
-a,c,c,b,d,moderate
-e,c,d,d,d,aggressive
-b,e,d,b,a,moderate
-e,e,c,a,b,moderate
-c,b,b,b,a,moderate
-b,d,e,a,d,moderate
-e,b,d,d,d,aggressive
-b,a,a,d,b,conservative
+e,c,a,b,c,moderate
+b,b,a,a,b,conservative
+e,a,d,d,e,moderate
+d,d,d,b,b,aggressive
+a,a,d,b,b,conservative
 e,d,a,e,b,moderate
 d,b,d,e,e,aggressive
 c,d,e,e,d,aggressive
@@ -49,3 +45,7 @@ c,b,d,b,c,aggressive
 e,c,d,e,e,aggressive
 d,e,c,c,d,aggressive
 c,c,b,a,b,moderate
+a,e,b,b,b,moderate
+d,c,e,e,e,aggressive
+a,b,c,b,c,moderate
+c,a,e,b,c,moderate
