@@ -1,16 +1,16 @@
 companyid,companyname,region
-brk001,barclays,oceania
-brk002,ubs,africa
-brk003,morgan stanley wealth management,africa
-brk004,fidelity investments,europe
-brk005,ubs,asia
-brk006,jpmorgan chase,europe
-brk007,td ameritrade,europe
-brk008,vanguard,asia
-brk009,ubs,oceania
-brk010,robinhood,america
+brk001,fidelity investments,europe
+brk002,fidelity investments,america
+brk003,barclays,america
+brk004,citigroup global markets,asia
+brk005,e*trade,america
+brk006,bofa securities,america
+brk007,robinhood,europe
+brk008,barclays,oceania
+brk009,ubs,africa
+brk010,morgan stanley wealth management,africa
 brk011,fidelity investments,europe
-brk012,bofa securities,oceania
-brk013,jpmorgan chase,asia
-brk014,deutsche bank,europe
-brk015,td ameritrade,asia
+brk012,ubs,asia
+brk013,jpmorgan chase,europe
+brk014,td ameritrade,europe
+brk015,vanguard,asia
