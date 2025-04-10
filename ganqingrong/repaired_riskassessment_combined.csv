@@ -1,0 +1,51 @@
+phonenumber,datetime,question1,question2,question3,question4,question5,risktolerance,name,dateofbirth,gender,email,annualincome,company,otherinformation
+88722606,2023-06-01 10:00:00,b,e,e,c,d,aggressive,elizabeth rodriguez,1974-04-01,m,elizabeth.rodriguez44@example.com,134455,acme corp,client 44
+83253031,2023-06-02 10:00:00,a,c,c,b,d,moderate,james williams,1966-12-18,m,james.williams36@example.com,101394,acme corp,client 36
+88106422,2023-06-03 10:00:00,e,c,d,d,d,aggressive,james doe,1960-06-25,m,james.doe38@example.com,197015,acme corp,client 38
+88722606,2023-06-04 10:00:00,b,e,d,b,a,moderate,elizabeth rodriguez,1974-04-01,m,elizabeth.rodriguez44@example.com,134455,acme corp,client 44
+85446912,2023-06-05 10:00:00,e,e,c,a,b,moderate,thomas white,1987-04-18,m,thomas.white19@example.com,111714,globex corporation,client 19
+88722606,2023-06-06 10:00:00,c,b,b,b,a,moderate,elizabeth rodriguez,1974-04-01,m,elizabeth.rodriguez44@example.com,134455,acme corp,client 44
+94698379,2023-06-07 10:00:00,b,d,e,a,d,moderate,charles thompson,1977-01-25,m,charles.thompson3@example.com,140785,acme corp,client 3
+84965789,2023-06-08 10:00:00,e,b,d,d,d,aggressive,laura taylor,1991-08-07,f,laura.taylor27@example.com,45370,wayne enterprises,client 27
+86007072,2023-06-09 10:00:00,b,a,a,d,b,conservative,mark martin,1998-04-05,f,mark.martin16@example.com,72349,initech,client 16
+98187926,2023-06-10 10:00:00,e,d,a,e,b,moderate,christopher anderson,1983-04-05,f,christopher.anderson12@example.com,53831,stark industries,client 12
+94514944,2023-06-11 10:00:00,d,b,d,e,e,aggressive,nancy garcia,2004-11-21,m,nancy.garcia8@example.com,189680,wayne enterprises,client 8
+88412769,2023-06-12 10:00:00,c,d,e,e,d,aggressive,susan scott,1987-09-01,m,susan.scott39@example.com,49724,wayne enterprises,client 39
+83253031,2023-06-13 10:00:00,d,b,d,d,c,aggressive,james williams,1966-12-18,m,james.williams36@example.com,101394,acme corp,client 36
+86539837,2023-06-14 10:00:00,b,c,e,d,b,aggressive,margaret wilson,2002-02-24,f,margaret.wilson49@example.com,162939,acme corp,client 49
+82321324,2023-06-15 10:00:00,d,a,c,b,c,moderate,michael green,1991-02-25,m,michael.green18@example.com,63657,globex corporation,client 18
+92188789,2023-06-16 10:00:00,c,e,a,b,b,moderate,thomas davis,1977-11-16,m,thomas.davis22@example.com,171356,wayne enterprises,client 22
+92871534,2023-06-17 10:00:00,d,b,b,a,d,moderate,barbara taylor,1970-08-01,f,barbara.taylor15@example.com,161225,wayne enterprises,client 15
+84965789,2023-06-18 10:00:00,c,e,d,d,a,moderate,laura taylor,1991-08-07,f,laura.taylor27@example.com,45370,wayne enterprises,client 27
+99877065,2023-06-19 10:00:00,d,d,e,a,e,moderate,james jackson,1960-11-24,m,james.jackson14@example.com,170763,acme corp,client 14
+92833230,2023-06-20 10:00:00,d,a,c,c,d,moderate,linda miller,1972-09-15,m,linda.miller25@example.com,140593,wayne enterprises,client 25
+84965789,2023-06-21 10:00:00,e,e,e,b,d,aggressive,laura taylor,1991-08-07,f,laura.taylor27@example.com,45370,wayne enterprises,client 27
+92871534,2023-06-22 10:00:00,c,d,d,a,d,moderate,barbara taylor,1970-08-01,f,barbara.taylor15@example.com,161225,wayne enterprises,client 15
+92188789,2023-06-23 10:00:00,d,b,d,b,e,aggressive,thomas davis,1977-11-16,m,thomas.davis22@example.com,171356,wayne enterprises,client 22
+95781295,2023-06-24 10:00:00,a,d,e,e,a,conservative,laura hernandez,1994-12-10,m,laura.hernandez35@example.com,175385,acme corp,client 35
+97067228,2023-06-25 10:00:00,d,b,d,b,a,moderate,christopher miller,2005-02-02,m,christopher.miller6@example.com,105861,stark industries,client 6
+86438436,2023-06-26 10:00:00,d,c,b,d,c,aggressive,maria smith,1967-06-27,f,maria.smith17@example.com,92770,stark industries,client 17
+92188789,2023-06-27 10:00:00,d,c,d,c,a,moderate,thomas davis,1977-11-16,m,thomas.davis22@example.com,171356,wayne enterprises,client 22
+84946066,2023-06-28 10:00:00,a,e,a,c,b,conservative,richard williams,1996-04-19,m,richard.williams31@example.com,192367,stark industries,client 31
+84971793,2023-06-29 10:00:00,a,a,a,b,b,aggressive,laura clark,1971-07-01,m,laura.clark42@example.com,117080,globex corporation,client 42
+91533224,2023-06-30 10:00:00,e,b,b,b,d,aggressive,john johnson,1973-04-17,m,john.johnson2@example.com,177127,wayne enterprises,client 2
+85476257,2023-07-01 10:00:00,a,e,b,d,c,moderate,laura clark,2004-02-13,m,laura.clark43@example.com,153388,wayne enterprises,client 43
+96472441,2023-07-02 10:00:00,c,b,e,e,a,moderate,richard scott,1978-09-05,m,richard.scott50@example.com,140217,globex corporation,client 50
+96472441,2023-07-03 10:00:00,b,c,a,e,a,conservative,richard scott,1978-09-05,m,richard.scott50@example.com,140217,globex corporation,client 50
+98350099,2023-07-04 10:00:00,e,d,d,b,a,moderate,thomas hernandez,1967-04-08,m,thomas.hernandez20@example.com,118627,stark industries,client 20
+88106422,2023-07-05 10:00:00,b,a,c,e,a,conservative,james doe,1960-06-25,m,james.doe38@example.com,197015,acme corp,client 38
+86752576,2023-07-06 10:00:00,a,c,e,d,c,moderate,robert lee,2000-05-17,f,robert.lee37@example.com,95829,stark industries,client 37
+95437923,2023-07-07 10:00:00,e,c,a,d,d,moderate,helen doe,1989-09-04,f,helen.doe5@example.com,50656,initech,client 5
+82694522,2023-07-08 10:00:00,d,c,d,b,d,aggressive,richard garcia,1989-11-27,f,richard.garcia7@example.com,72638,acme corp,client 7
+98187926,2023-07-09 10:00:00,e,c,e,e,d,aggressive,christopher anderson,1983-04-05,f,christopher.anderson12@example.com,53831,stark industries,client 12
+99436429,2023-07-10 10:00:00,d,e,c,c,b,aggressive,thomas jones,1963-09-03,m,thomas.jones30@example.com,47962,initech,client 30
+97067228,2023-07-11 10:00:00,c,d,b,d,e,aggressive,christopher miller,2005-02-02,m,christopher.miller6@example.com,105861,stark industries,client 6
+87194416,2023-07-12 10:00:00,d,c,a,d,c,moderate,christopher jackson,1969-07-05,m,christopher.jackson40@example.com,110808,acme corp,client 40
+98187926,2023-07-13 10:00:00,d,b,c,c,c,aggressive,christopher anderson,1983-04-05,f,christopher.anderson12@example.com,53831,stark industries,client 12
+82321324,2023-07-14 10:00:00,e,c,e,a,e,moderate,michael green,1991-02-25,m,michael.green18@example.com,63657,globex corporation,client 18
+83564251,2023-07-15 10:00:00,a,b,d,d,e,moderate,mark jones,2003-07-20,m,mark.jones13@example.com,130864,globex corporation,client 13
+86539837,2023-07-16 10:00:00,b,d,d,d,a,moderate,margaret wilson,2002-02-24,f,margaret.wilson49@example.com,162939,acme corp,client 49
+97067228,2023-07-17 10:00:00,c,b,d,b,c,aggressive,christopher miller,2005-02-02,m,christopher.miller6@example.com,105861,stark industries,client 6
+85476257,2023-07-18 10:00:00,e,c,d,e,e,aggressive,laura clark,2004-02-13,m,laura.clark43@example.com,153388,wayne enterprises,client 43
+95076817,2023-07-19 10:00:00,d,e,c,c,d,aggressive,helen moore,1986-04-04,m,helen.moore23@example.com,142997,acme corp,client 23
+82321324,2023-07-20 10:00:00,c,c,b,a,b,moderate,michael green,1991-02-25,m,michael.green18@example.com,63657,globex corporation,client 18
