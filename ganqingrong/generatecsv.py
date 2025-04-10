@@ -326,23 +326,69 @@ withdrawal_tids = [f"t{str(i).zfill(3)}" for i in range(601, 901)]
 # --------------------------------------
 # GENERATE TRANSACTION DATA (900 total)
 # --------------------------------------
-all_tids = market_tids + rebalancing_tids + withdrawal_tids
-base_dt = datetime(2024, 1, 1)
+trans_data = []
 
-for t_id in all_tids:
+# Generate market transactions (t001 – t300)
+for t_id in market_tids:
     transactionamount = random.randint(500, 10000)
-    rand_dt = base_dt + timedelta(days=random.randint(0, 364), hours=random.randint(0, 23), minutes=random.randint(0, 59))
+    rand_dt = base_dt + timedelta(days=random.randint(0, 364),
+                                    hours=random.randint(0, 23),
+                                    minutes=random.randint(0, 59))
     transactiondate = rand_dt.strftime("%Y-%m-%d %H:%M:%S")
     portfolioid = random.choice([row[0] for row in port_data])
     assetid = random.choice(asset_ids)
     trans_data.append([t_id, str(transactionamount), transactiondate, portfolioid, assetid])
 
-# Write TRANSACTION table
+# Generate rebalancing transactions (t301 – t600)
+for t_id in rebalancing_tids:
+    transactionamount = random.randint(500, 10000)
+    rand_dt = base_dt + timedelta(days=random.randint(0, 364),
+                                    hours=random.randint(0, 23),
+                                    minutes=random.randint(0, 59))
+    transactiondate = rand_dt.strftime("%Y-%m-%d %H:%M:%S")
+    portfolioid = random.choice([row[0] for row in port_data])
+    assetid = random.choice(asset_ids)
+    trans_data.append([t_id, str(transactionamount), transactiondate, portfolioid, assetid])
+
+# Generate withdrawal transactions (t601 – t900) with guaranteed top-ups
+# Ensure that one withdrawal transaction (topup) occurs on the 1st day of every month in 2024.
+guaranteed_topup_ids = []
+withdrawal_trans_data = []
+
+# For guaranteed top-ups on the first day of each month:
+for month in range(1, 13):
+    # Pop one transaction id from withdrawal_tids for the guaranteed top-up
+    t_id = withdrawal_tids.pop(0)
+    guaranteed_topup_ids.append(t_id)
+    transactionamount = random.randint(500, 10000)
+    # Set the date to the first day of the month (time is random)
+    dt_obj = datetime(2024, month, 1, random.randint(0, 23), random.randint(0, 59), 0)
+    transactiondate = dt_obj.strftime("%Y-%m-%d %H:%M:%S")
+    portfolioid = random.choice([row[0] for row in port_data])
+    assetid = random.choice(asset_ids)
+    withdrawal_trans_data.append([t_id, str(transactionamount), transactiondate, portfolioid, assetid])
+
+# For the remaining withdrawal transactions, generate data randomly:
+for t_id in withdrawal_tids:
+    transactionamount = random.randint(500, 10000)
+    rand_dt = base_dt + timedelta(days=random.randint(0, 364),
+                                    hours=random.randint(0, 23),
+                                    minutes=random.randint(0, 59))
+    transactiondate = rand_dt.strftime("%Y-%m-%d %H:%M:%S")
+    portfolioid = random.choice([row[0] for row in port_data])
+    assetid = random.choice(asset_ids)
+    withdrawal_trans_data.append([t_id, str(transactionamount), transactiondate, portfolioid, assetid])
+
+# Combine all transactions
+trans_data.extend(withdrawal_trans_data)
+
+# Write the TRANSACTION table
 write_csv("transaction.csv", trans_header, trans_data)
 
-# Helper maps for later use
+# Helper maps for later use (remain unchanged)
 trans_dict = {row[0]: row[3] for row in trans_data}
 invested_dict = {row[0]: float(row[2]) for row in port_data}
+
 
 # --------------------------------------
 # MARKETTRANSACTION: t001 – t300
@@ -353,6 +399,7 @@ for t_id in market_tids:
     companyid = f"brk{str(random.randint(1, 15)).zfill(3)}"
     mt_data.append([t_id, companyid])
 write_csv("markettransaction.csv", mt_header, mt_data)
+
 
 # --------------------------------------
 # REBALANCINGTRANSACTION: t301 – t600
@@ -365,27 +412,24 @@ for t_id in rebalancing_tids:
     rt_data.append([t_id, str(fee)])
 write_csv("rebalancingtransaction.csv", rt_header, rt_data)
 
+
 # --------------------------------------
 # WITHDRAWALORTOPUPTRANSACTION: t601 – t900
 # --------------------------------------
 wot_header = ["transactionid", "type"]
 wot_data = []
-for t_id in withdrawal_tids:
-    ttype = random.choice(["topup", "withdrawal"])
-    wot_data.append([t_id, ttype])
+# For the guaranteed top-ups, set the type to "topup"
+for t_id in guaranteed_topup_ids:
+    wot_data.append([t_id, "topup"])
+# For the remaining withdrawal transactions, randomly choose the type
+for rec in withdrawal_trans_data:
+    t_id = rec[0]
+    if t_id in guaranteed_topup_ids:
+        continue
+    else:
+        ttype = random.choice(["topup", "withdrawal"])
+        wot_data.append([t_id, ttype])
 write_csv("withdrawalortopuptransaction.csv", wot_header, wot_data)
-
-# ----------------------------
-# 18. POSTTRADECOMPANY – 3NF
-# ----------------------------
-ptc_header = ["companyid", "companyname", "region"]
-ptc_data = []
-for i in range(1, 16):
-    cid = f"brk{str(i).zfill(3)}"
-    cname = random.choice(brokerage_names)
-    region = random.choice(regions)
-    ptc_data.append([cid, cname, region])
-write_csv("posttradecompany.csv", ptc_header, ptc_data)
 
 # ----------------------------
 # X. COMBINE RISK ASSESSMENT INTO ONE FILE
